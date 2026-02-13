@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface CSPHeadersResponse {
   url?: string;
@@ -10,6 +11,7 @@ interface CSPHeadersResponse {
 }
 
 export default function Home() {
+  const router = useRouter();
   const [embedToken, setEmbedToken] = useState("");
   const [domain, setDomain] = useState<"dev" | "prod" | "localhost">("dev");
   const [cspHeaders, setCspHeaders] = useState<CSPHeadersResponse | null>(null);
@@ -87,6 +89,14 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center bg-zinc-50 px-4 py-8 font-sans dark:bg-black">
+      <div className="mb-6 w-full max-w-3xl">
+        <button
+          onClick={() => router.push("/create")}
+          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+        >
+          Create
+        </button>
+      </div>
       <div className="w-full max-w-3xl space-y-4">
         <div>
           <label className="mb-2 block text-sm font-medium text-zinc-800 dark:text-zinc-100">
